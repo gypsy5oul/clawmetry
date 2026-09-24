@@ -51,10 +51,10 @@ RUN set -eu; \
     python3 -m pip uninstall --yes pip
 
 # pip is removed once the wheel is in, because the image never needs it again
-# (CLAWMETRY_AUTO_UPDATE=0 above) and it is the only thing in the image that
-# carries fixable advisories. pip vendors its own copies of msgpack and
-# setuptools (pip/_vendor/vendor.txt: msgpack==1.1.2, setuptools==70.3.0), and
-# image scanners report them as installed packages:
+# (CLAWMETRY_AUTO_UPDATE=0 above) and, per trivy, it is the only thing in the
+# image that carries fixable advisories. pip vendors its own copies of msgpack
+# and setuptools (pip/_vendor/vendor.txt: msgpack==1.1.2, setuptools==70.3.0),
+# and trivy reports them as installed packages:
 #   GHSA-6v7p-g79w-8964  msgpack     1.1.2  -> 1.2.1   HIGH
 #   CVE-2025-47273       setuptools  70.3.0 -> 78.1.1  HIGH
 #   CVE-2026-59890       setuptools  70.3.0 -> 83.0.0  MEDIUM
